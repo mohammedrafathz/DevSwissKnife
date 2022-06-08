@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {List} from 'react-bootstrap-icons';
+// import {Route, Routes} from 'react-router-dom';
+import {Button} from 'reactstrap';
 
-function App() {
+import './App.css';
+import JsonKeySorter from './components/json-key-sorter/JsonKeySorter';
+import Sidebar from './components/sidebar/Sidebar';
+
+const App = () => {
+  const [sidebar, setSidebar] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='home'>
+      <Sidebar isOpen={sidebar} toggleSidebar={setSidebar} />
+      <Button color='light' className="navbar-toggler" onClick={() => setSidebar(s => !s)}>
+        <List />
+      </Button>
+      <JsonKeySorter />
+      {/* <Routes>
+      </Routes> */}
     </div>
   );
-}
+};
 
 export default App;

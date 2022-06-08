@@ -1,0 +1,28 @@
+
+.sidebar{
+  position: fixed!important;
+  left: 0px;
+  width: 320px;
+  height: 100%;
+  transition: left .5s ease-in-out;
+  z-index: 1;
+}
+
+.questionStyle {
+  font-weight: 600;
+  color: #5c5c5c;
+  font-size: medium;
+}
+
+.buttonGroup {
+  text-align: center;
+}
+
+.secondaryButton {
+  padding: 0.5rem 4rem;
+  font-weight: 600;
+}
+
+.hide{
+  left: -400px;
+}
