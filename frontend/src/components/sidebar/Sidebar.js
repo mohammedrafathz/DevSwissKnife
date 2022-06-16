@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {Button, Card, CardBody, Col, Input, Nav, Row} from 'reactstrap';
 
 import styles from './Sidebar.module.css';
-import SideItem from '../side-item/SideItem';
+import SideItem from '../side-item/SideItem.js';
 
 const Sidebar = ({isOpen, toggleSidebar}) => {
   const urlMap = [
     {label: 'JSON Key Sorter', path: '/json-key-sorter'},
     {label: 'Internet Speed Test', path: '/internet-speed-test'},
+    {label: 'CheatSheets', path: '/cheat-sheets'},
     {label: 'Compare JSON', path: 'compare-json'},
     {label: 'URL Encode/Decode', path: '/url-en-decoder'},
     {label: 'URL Parser', path: '/url-parser'},
