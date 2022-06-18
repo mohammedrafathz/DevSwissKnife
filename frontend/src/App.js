@@ -8,7 +8,7 @@ import JsonKeySorter from './components/json-key-sorter/JsonKeySorter';
 import Sidebar from './components/sidebar/Sidebar';
 
 const App = () => {
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
 
   return (
     <div className='home'>
