@@ -4,22 +4,20 @@ import {Button, Card, CardBody, Col, Input, Nav, Row} from 'reactstrap';
 
 import styles from './Sidebar.module.css';
 import SideItem from '../side-item/SideItem';
+import {MENU_MAP} from '../../utils/constants';
 
 const Sidebar = ({isOpen, toggleSidebar}) => {
-  const urlMap = [
-    {label: 'JSON Key Sorter', path: '/json-key-sorter'},
-    {label: 'Internet Speed Test', path: '/internet-speed-test'},
-    {label: 'Compare JSON', path: 'compare-json'},
-    {label: 'URL Encode/Decode', path: '/url-en-decoder'},
-    {label: 'URL Parser', path: '/url-parser'},
-    {label: 'Formatters', path: '/formatters'},
-    {label: 'Quick Whiteboard', path: '/whiteboard'},
-    {label: 'UML Tools', path: '/uml-tools'},
-    {label: 'Quick File Sharing', path: '/quick-file-share'},
-    {label: 'Temporary Email', path: '/temp-emails'},
-    {label: 'Text Manipulation', path: '/text-manipulation'},
-    {label: 'QR Code Generator', path: '/qr-code'}
-  ];
+ 
+  const renderUrls = () => {
+    let menuList = [];
+    for (const k in MENU_MAP) {
+      if (Object.hasOwnProperty.call(MENU_MAP, k)) {
+        const element = MENU_MAP[k];
+        menuList.push(<SideItem key={k} label={element.label} path={element.path} />);
+      }
+    }
+    return menuList;
+  };
 
   return (
     <>
@@ -41,9 +39,7 @@ const Sidebar = ({isOpen, toggleSidebar}) => {
           </Row>
           <br />
           <Nav navbar className="list-group list-group-flush border">
-            {urlMap.map((u, i) =>
-              <SideItem key={i} label={u.label} path={u.path} />
-            )}
+            {renderUrls()}
           </Nav>
         </CardBody>
       </Card>

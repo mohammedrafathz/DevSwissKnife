@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 import {NavItem} from 'reactstrap';
 
-const SideItem = ({label, path}) => {
-  console.log();
-  return (
-    <NavItem className="list-group-item">
-      <NavLink to={path}>
-        {label}
-      </NavLink>
-    </NavItem>
-  );
-};
+import styles from './SideItem.module.css';
+
+const SideItem = ({label, path}) => (
+  <NavItem className="list-group-item">
+    <NavLink className={styles.link} to={path}>
+      {label}
+    </NavLink>
+  </NavItem>
+);
 
 SideItem.propTypes = {
   label: PropTypes.string.isRequired,

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Col, Container, FormGroup, Input, Label, Row} from 'reactstrap';
+import {Button, Col, FormGroup, Input, Label, Row} from 'reactstrap';
 
 const JsonKeySorter = () => {
   const [inputData, setInputData] = useState('');
@@ -23,7 +23,7 @@ const JsonKeySorter = () => {
         sorted[a] = jsonData[a];
       }
 
-      setSortedData(JSON.stringify(sorted, null, '\t').replaceAll('\\"',''));
+      setSortedData(JSON.stringify(sorted, null, '\t').replaceAll('\\"', ''));
     } catch (error) {
       console.log(error);
     }
@@ -31,44 +31,42 @@ const JsonKeySorter = () => {
 
   return (
     <>
-      <Container>
-        <h1 className='text-center'>JSON Key Sorter</h1>
-        <br />
-        <Row >
-          <Col className="align-self-center">
-            <FormGroup>
-              <Label>Paste your JSON here</Label>
-              <Input
-                type='textarea'
-                rows={10}
-                value={inputData}
-                onChange={handleInputData} />
-            </FormGroup>
-          </Col>
-        </Row>
-        <br />
-        <Row >
-          <Col className="align-self-center">
-            <FormGroup>
-              <Label>Sorted JSON</Label>
-              <Input
-                type='textarea'
-                rows={10}
-                readOnly
-                value={sortedData}
-              />
-            </FormGroup>
-          </Col>
-        </Row>
-        <div className='text-center'>
-          <Button>
-            Copy to Clipboard
-          </Button>
-          <Button className='ms-2' color='danger' outline>
-            Clear
-          </Button>
-        </div>
-      </Container>
+      <h1 className='text-center'>JSON Key Sorter</h1>
+      <br />
+      <Row >
+        <Col className="align-self-center">
+          <FormGroup>
+            <Label>Paste your JSON here</Label>
+            <Input
+              type='textarea'
+              rows={10}
+              value={inputData}
+              onChange={handleInputData} />
+          </FormGroup>
+        </Col>
+      </Row>
+      <br />
+      <Row >
+        <Col className="align-self-center">
+          <FormGroup>
+            <Label>Sorted JSON</Label>
+            <Input
+              type='textarea'
+              rows={10}
+              readOnly
+              value={sortedData}
+            />
+          </FormGroup>
+        </Col>
+      </Row>
+      <div className='text-center'>
+        <Button>
+          Copy to Clipboard
+        </Button>
+        <Button className='ms-2' color='danger' outline>
+          Clear
+        </Button>
+      </div>
     </>
   );
 };
