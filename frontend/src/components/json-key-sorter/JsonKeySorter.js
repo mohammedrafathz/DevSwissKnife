@@ -1,38 +1,60 @@
 import React, {useState} from 'react';
-import {Button, Col, FormGroup, Input, Label, Row} from 'reactstrap';
+import {Button, Col, FormGroup, Input, Label, Row, UncontrolledAlert} from 'reactstrap';
 
 const JsonKeySorter = () => {
   const [inputData, setInputData] = useState('');
   const [sortedData, setSortedData] = useState('');
+  const [error, setError] = useState('');
   //TODO auto detect json from clipboard and show as placeholder
 
+  const stringToObject = strInput => {
+    const spaceCleanUp = strInput.replace(/[\n\r\t\s]+/g, '').replace(/'/g, '"');
+
+    const keyCleanUp = spaceCleanUp.substring(1, spaceCleanUp.length - 1)
+      .split(',')
+      .map(s => {
+        const pair = s.split(':');
+
+        if (pair[0].indexOf('"') >= 0)
+          return pair;
+        return ['"' + pair[0] + '"', pair[1]];
+      })
+      .map(s => s.join(':'));
+
+    return JSON.parse('{' + keyCleanUp + '}');
+  };
+
   const handleInputData = ({target}) => {
-    try {
-      setInputData(target.value);
-      const sorted = {};
-      const jsonData = Object.fromEntries(
-        target.value
-          .replace('{', '')
-          .replace('}', '')
-          .split(',')
-          .map(i => i.split(':'))
-          .map(i => [i[0].trim(), i[1].trim()])
-      );
+    setError('');
+    if (target.value) {
+      try {
+        setInputData(target.value);
+        const sorted = {};
+        const jsonData = stringToObject(target.value);
 
-      for (let a of Object.keys(jsonData).sort()) {
-        sorted[a] = jsonData[a];
+        for (let a of Object.keys(jsonData).sort()) {
+          sorted[a] = jsonData[a];
+        }
+
+        setSortedData(JSON.stringify(sorted, null, '\t').replaceAll('\\"', ''));
+      } catch (error) {
+        setError('Ill formed JSON detected');
       }
-
-      setSortedData(JSON.stringify(sorted, null, '\t').replaceAll('\\"', ''));
-    } catch (error) {
-      console.log(error);
     }
   };
 
   return (
     <>
-      <h1 className='text-center'>JSON Key Sorter</h1>
-      <br />
+      <div className='text-center'>
+        <h1>
+          JSON Key Sorter
+        </h1>
+        <small className='text-muted'>Currently supports level-1 objects only</small>
+      </div>
+
+      {error &&
+        <UncontrolledAlert color='danger' >{error}</UncontrolledAlert>
+      }
       <Row >
         <Col className="align-self-center">
           <FormGroup>
