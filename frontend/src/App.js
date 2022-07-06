@@ -3,12 +3,14 @@ import {Route, Routes} from 'react-router-dom';
 import {Container} from 'reactstrap';
 
 import './App.css';
+import CompareJson from './components/compare-json/CompareJson';
 import FileSharing from './components/file-sharing/FileSharing';
 import Home from './components/home/Home';
 import JsonKeySorter from './components/json-key-sorter/JsonKeySorter';
 import Navigation from './components/navigation/Navigation';
 import QRCode from './components/qr-code-generator/QRCodeGenerator';
 import Sidebar from './components/sidebar/Sidebar';
+import URLEncodeDecode from './components/url-encode-decode/URLEncodeDecode';
 import {MENU_MAP} from './utils/constants';
 
 const App = () => {
@@ -24,6 +26,8 @@ const App = () => {
           <Route path={MENU_MAP.jsonKeySorter.path} element={<JsonKeySorter />} />
           <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} />
           <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
+          <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
+          <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode />} />
         </Routes>
       </Container>
     </div>
