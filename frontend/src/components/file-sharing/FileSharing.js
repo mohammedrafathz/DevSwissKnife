@@ -1,50 +1,101 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
-  Card, CardBody, Col, Input,
-  ListGroup, ListGroupItem, Row
+  Card, CardBody, Col, FormGroup, Input,
+  Label,
+  ListGroup, ListGroupItem, Row, Spinner
 } from 'reactstrap';
 import {useDropzone} from 'react-dropzone';
+import io from 'socket.io-client';
 
 import styles from './FileSharing.module.css';
-import {makeUniqueId} from '../../utils/commonFunction';
+import {generateUniqueId} from '../../utils/commonFunction';
 import {CheckAll} from 'react-bootstrap-icons';
+import {basePath, birdNames} from '../../utils/constants';
 // import serverApi from '../../api/serverApi';
+
+
 
 const FileSharing = () => {
   // const [multipleUploadProgress, setMultipleUploadProgress] = useState(0);
   // const [tooltip, setTooltip] = useState(false);
-  const [sessionId] = useState(makeUniqueId(20));
-  const {getRootProps, getInputProps, isDragActive, acceptedFiles} = useDropzone();
-  console.log(acceptedFiles);
+  const [socket, setSocket] = useState(null);
+  const birdName = birdNames[Math.floor(Math.random() * 200) + 1];
+  const [sessionId, setSessionId] = useState(`${birdName}-${generateUniqueId(4)}`);
+  const [files, setFiles] = useState([]);
+  const {getRootProps, getInputProps, isDragActive, acceptedFiles} = useDropzone({
+    maxFiles: 5,
+    maxSize: 5242880
+  });
   // multi file dropzone
   // 5 files allowed at a time
   // console.log(multipleUploadProgress);
-  // const uploadFiles = async () => {
+  const uploadFiles = useCallback(uploadFiles => {
+    // for (let i = 0; i < acceptedFiles.length; i++) {
+    //   const file = acceptedFiles[i];
+    socket.emit('fileUpload', uploadFiles);
+    // }
+  }, [socket]);
 
-  //   try {
-  //     const fd = new FormData();
-  //     const config = {
-  //       headers: {
-  //         name: 'Accept',
-  //         value: 'application/json'
-  //       },
-  //       onUploadProgress: progressEvent => {
-  //         const {loaded, total} = progressEvent;
-  //         const percent = Math.floor((loaded * 100) / total);
 
-  //         setMultipleUploadProgress(percent === 100 ? 100 : percent / acceptedFiles.length);
 
-  //         // setMyFiles(f => f.map(a => a.id === id ? {...a, progress: percent} : a));
-  //       },
-  //       // cancelToken: s.token
-  //     };
-  //     const {data} = await serverApi('/filesharing', fd, config);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
+  useEffect(() => {
+    const newSocket = io(basePath);
+    setSocket(newSocket);
 
-  // };
+    if (sessionId) {
+      newSocket.emit('reteriveFiles', sessionId);
+    }
+
+    newSocket.on('disconnect', () => {
+      console.log('reconnecting');
+      newSocket.io.reconnect();
+    });
+
+    return () => newSocket.close();
+  }, [sessionId, setSocket]);
+
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      const filesArr = [];
+
+      for (let i = 0; i < acceptedFiles.length; i++) {
+        const file = acceptedFiles[i];
+        const newFile = {
+          folder: sessionId,
+          filename: file.name,
+          file,
+          uploaded: false
+        };
+
+        console.log(file.name);
+        filesArr.push(newFile);
+
+      }
+
+      uploadFiles(filesArr);
+
+      setFiles(f => [...f, ...filesArr]);
+    }
+  }, [acceptedFiles, sessionId, uploadFiles]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('success', (data) => {
+        console.log(files);
+        if (files.length > 0) {
+          const uploadedFiles = files.map(f => data.includes(f.filename) ? {...f, uploaded: true} : f);
+
+          setFiles([...uploadedFiles]);
+        }
+      });
+
+      socket.on('savedFiles', (data) => {
+        console.log(data);
+        setFiles(data);
+      });
+    }
+  }, [files, socket]);
+
 
   return (
     <>
@@ -56,12 +107,23 @@ const FileSharing = () => {
       </div>
       <br />
       <Row className='justify-content-md-center'>
-        <Col sm='4'></Col>
-        <Col sm="4">
-          <Input placeholder='Session ID' value={sessionId} />
+        <Col sm='2'></Col>
+        <Col sm="6">
+          <FormGroup row>
+            <Label
+              for="sessionID"
+              sm={2}
+            >
+              Session Id:
+            </Label>
+            <Col sm={10}>
+              <Input id='sessionID' placeholder='Session ID' value={sessionId} onChange={({target}) => setSessionId(target.value)} />
+            </Col>
+          </FormGroup>
+
           <br />
         </Col>
-        <Col sm='4'></Col>
+        <Col sm='2'></Col>
         <Col sm="6">
           <Card>
             <CardBody>
@@ -80,21 +142,21 @@ const FileSharing = () => {
         <Col sm='12'></Col>
         <Col sm="4">
           <ListGroup>
-            {acceptedFiles.map((a, i) =>
+            {files.map((a, i) =>
               <ListGroupItem key={i} className='d-flex justify-content-between align-items-start'>
                 <div className="ms-2 me-auto">
                   <div className="fw-bold">
-                    <a href="#"> {a.name}
+                    <a href={`${basePath}/filesharing?sessionId=${sessionId}&filename=${a.file.name}`}> {a.file.name}
                     </a>
                   </div>
-                  {a.size / 1024} Kb | {a.type}
+                  {a.file.size / 1024} Kb | {a.file.type}
                 </div>
-                <CheckAll size='32' color='green' />
-
+                {a.uploaded ?
+                  <CheckAll size='32' color='green' /> :
+                  <Spinner size="sm" className='mt-2' />}
               </ListGroupItem>
             )}
           </ListGroup>
-          {/* <Button onClick={uploadFiles}>upload</Button> */}
         </Col>
       </Row>
     </>

@@ -1,10 +1,10 @@
 const express = require('express');
-const {upload} = require("../config/multerConfig")
+const path = require('path');
 const router = express.Router();
 
 /* GET home page. */
-router.post('/filesharing', upload.array('sharedfiles', 5), (req, res, next) => {
-  res.render('index', {title: 'Express'});
+router.get('/filesharing', (req, res) => {
+  res.download(path.resolve(`./uploads/${req.query.sessionId}/${req.query.filename}`))
 });
 
 module.exports = router;

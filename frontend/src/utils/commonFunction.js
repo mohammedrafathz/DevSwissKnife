@@ -1,4 +1,4 @@
-export const makeUniqueId = length => {
+export const generateUniqueId = length => {
   var result = '';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var charactersLength = characters.length;
