@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Col, FormGroup, Input, Label, Row, UncontrolledAlert} from 'reactstrap';
+import {notify} from 'react-notify-bootstrap';
 
 const JsonKeySorter = () => {
   const [inputData, setInputData] = useState('');
@@ -43,6 +44,14 @@ const JsonKeySorter = () => {
     }
   };
 
+  const copyToClipboard = () => {
+    if (sortedData) {
+      navigator.clipboard.writeText(sortedData).then(() => {
+        notify({text: 'Copied!', variant: 'dark'});
+      });
+    }
+  };
+
   return (
     <>
       <div className='text-center'>
@@ -82,10 +91,10 @@ const JsonKeySorter = () => {
         </Col>
       </Row>
       <div className='text-center'>
-        <Button>
+        <Button onClick={copyToClipboard}>
           Copy to Clipboard
         </Button>
-        <Button className='ms-2' color='danger' outline>
+        <Button className='ms-2' color='danger' outline onClick={() => setInputData('')}>
           Clear
         </Button>
       </div>

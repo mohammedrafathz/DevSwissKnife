@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {Container} from 'reactstrap';
+import Notification from 'react-notify-bootstrap';
 
 import './App.css';
 import CompareJson from './components/compare-json/CompareJson';
@@ -13,13 +14,17 @@ import Sidebar from './components/sidebar/Sidebar';
 import URLEncodeDecode from './components/url-encode-decode/URLEncodeDecode';
 import {MENU_MAP} from './utils/constants';
 
+
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
+  const [themeMode, setThemeMode] = useState(false);
 
   return (
-    <div className='home'>
-      <Navigation toggleSidebar={() => setSidebar(s => !s)} />
-      <Sidebar isOpen={sidebar} toggleSidebar={setSidebar} />
+    <div className={`home ${themeMode ? 'bg-dark dark' : 'bg-light'}`}>
+      <Navigation
+        changeMode={setThemeMode}
+        toggleSidebar={() => setSidebar(s => !s)} />
+      <Sidebar themeMode={themeMode} isOpen={sidebar} toggleSidebar={setSidebar} />
       <Container>
         <Routes>
           <Route path={MENU_MAP.home.path} element={<Home />} />
@@ -27,9 +32,10 @@ const App = () => {
           <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} />
           <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
           <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
-          <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode />} />
+          <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} />
         </Routes>
       </Container>
+      <Notification />
     </div>
   );
 };

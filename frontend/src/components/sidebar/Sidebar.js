@@ -6,14 +6,13 @@ import styles from './Sidebar.module.css';
 import SideItem from '../side-item/SideItem';
 import {MENU_MAP} from '../../utils/constants';
 
-const Sidebar = ({isOpen, toggleSidebar}) => {
- 
+const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
   const renderUrls = () => {
     let menuList = [];
     for (const k in MENU_MAP) {
       if (Object.hasOwnProperty.call(MENU_MAP, k)) {
         const element = MENU_MAP[k];
-        menuList.push(<SideItem key={k} label={element.label} path={element.path} />);
+        menuList.push(<SideItem themeMode={themeMode} key={k} label={element.label} path={element.path} />);
       }
     }
     return menuList;
@@ -21,14 +20,14 @@ const Sidebar = ({isOpen, toggleSidebar}) => {
 
   return (
     <>
-      <Card className={`${styles.sidebar} ` + (isOpen ? '' : `${styles.hide}`)}>
+      <Card color={`${themeMode ? ' dark-card' : 'white'}`} className={`${styles.sidebar} ` + (isOpen ? '' : `${styles.hide}`)}>
         <CardBody>
           <Row>
             <Col sm={9}>
               <img className='img-fluid' src='/images/logo.png' alt='Developer Swiss Knife Logo ' />
             </Col>
             <Col>
-              <Button close className='float-end' onClick={() => toggleSidebar(e => !e)} />
+              <Button close className='float-end' color='light' onClick={() => toggleSidebar(e => !e)} />
             </Col>
           </Row>
           <br />
@@ -50,6 +49,7 @@ const Sidebar = ({isOpen, toggleSidebar}) => {
 Sidebar.propTypes = {
   isOpen: PropTypes.bool,
   toggleSidebar: PropTypes.func,
+  themeMode: PropTypes.bool,
 };
 
 export default Sidebar;

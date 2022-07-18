@@ -1,12 +1,12 @@
-
-.sidebar{
-  position: fixed!important;
+.sidebar {
+  position: fixed !important;
   left: 0px;
   width: 320px;
   height: 100%;
   transition: left .5s ease-in-out;
   z-index: 1;
   top: 0;
+  overflow-y: scroll;
 }
 
 .questionStyle {
@@ -24,6 +24,6 @@
   font-weight: 600;
 }
 
-.hide{
+.hide {
   left: -400px;
 }

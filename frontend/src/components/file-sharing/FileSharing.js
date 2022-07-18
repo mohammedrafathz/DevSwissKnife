@@ -36,8 +36,6 @@ const FileSharing = () => {
     // }
   }, [socket]);
 
-
-
   useEffect(() => {
     const newSocket = io(basePath);
     setSocket(newSocket);
@@ -80,7 +78,7 @@ const FileSharing = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on('success', (data) => {
+      socket.on('success', data => {
         console.log(files);
         if (files.length > 0) {
           const uploadedFiles = files.map(f => data.includes(f.filename) ? {...f, uploaded: true} : f);
@@ -89,7 +87,7 @@ const FileSharing = () => {
         }
       });
 
-      socket.on('savedFiles', (data) => {
+      socket.on('savedFiles', data => {
         console.log(data);
         setFiles(data);
       });
@@ -112,15 +110,14 @@ const FileSharing = () => {
           <FormGroup row>
             <Label
               for="sessionID"
-              sm={2}
+              sm={3}
             >
               Session Id:
             </Label>
-            <Col sm={10}>
+            <Col sm={9}>
               <Input id='sessionID' placeholder='Session ID' value={sessionId} onChange={({target}) => setSessionId(target.value)} />
             </Col>
           </FormGroup>
-
           <br />
         </Col>
         <Col sm='2'></Col>

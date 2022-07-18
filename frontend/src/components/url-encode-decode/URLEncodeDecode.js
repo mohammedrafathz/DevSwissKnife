@@ -1,21 +1,44 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {notify} from 'react-notify-bootstrap';
 import {
-  Button,
-  Card,
-  CardBody,
+  Button, Card, CardBody,
   Col, FormGroup, Input, Label, Row
 } from 'reactstrap';
 
-const URLEncodeDecode = () => {
+const URLEncodeDecode = ({themeMode}) => {
   const [encoder, setEncoder] = useState('');
+  const [encoded, setEncoded] = useState('');
   const [decoder, setDecoder] = useState('');
+  const [decoded, setDecoded] = useState('');
 
   const handleEncoding = ({target}) => {
     setEncoder(target.value);
+    const encoded = encodeURIComponent(target.value);
+
+    setEncoded(encoded);
   };
 
   const handleDecoding = ({target}) => {
     setDecoder(target.value);
+    const decoded = decodeURIComponent(target.value);
+    setDecoded(decoded);
+  };
+
+  const copyEncoded = () => {
+    if (encoded) {
+      navigator.clipboard.writeText(encoded).then(() => {
+        notify({text: 'Copied!', variant: 'dark'});
+      });
+    }
+  };
+
+  const copyDecoded = () => {
+    if (decoded) {
+      navigator.clipboard.writeText(decoded).then(() => {
+        notify({text: 'Copied!', variant: 'dark'});
+      });
+    }
   };
 
   return (
@@ -24,12 +47,12 @@ const URLEncodeDecode = () => {
         <h1>
           String Encoder/Decoder
         </h1>
-        <small className='text-muted'>Encode or Decode URL Formatted Strings</small>
+        <small className={`${themeMode ? 'text-light' : 'text-muted'}`}>Encode or Decode URL Formatted Strings</small>
       </div>
       <br />
       <Row>
         <Col sm='6'>
-          <Card>
+          <Card className='shadow' color={`${themeMode ? ' dark-card' : 'white'}`}>
             <CardBody>
               <h3>Encoder</h3>
               <FormGroup>
@@ -45,11 +68,10 @@ const URLEncodeDecode = () => {
                 <Input
                   type='textarea'
                   rows={3}
-                  value={encoder}
-                  onChange={handleEncoding} />
+                  value={encoded} />
               </FormGroup>
               <div className='text-center'>
-                <Button>
+                <Button onClick={copyEncoded}>
                   Copy to Clipboard
                 </Button>
               </div>
@@ -57,7 +79,7 @@ const URLEncodeDecode = () => {
           </Card>
         </Col>
         <Col sm='6'>
-          <Card>
+          <Card className='shadow' color={`${themeMode ? ' dark-card' : 'white'}`}>
             <CardBody>
               <h3>Decoder</h3>
               <FormGroup>
@@ -69,15 +91,15 @@ const URLEncodeDecode = () => {
                   onChange={handleDecoding} />
               </FormGroup>
               <FormGroup>
-                <Label>Encoded string:</Label>
+                <Label>Decoded string:</Label>
                 <Input
                   type='textarea'
                   rows={3}
-                  value={encoder}
+                  value={decoded}
                   onChange={handleEncoding} />
               </FormGroup>
               <div className='text-center'>
-                <Button>
+                <Button onClick={copyDecoded}>
                   Copy to Clipboard
                 </Button>
               </div>
@@ -89,4 +111,8 @@ const URLEncodeDecode = () => {
   );
 };
 
+
+URLEncodeDecode.propTypes = {
+  themeMode: PropTypes.bool,
+};
 export default URLEncodeDecode;
