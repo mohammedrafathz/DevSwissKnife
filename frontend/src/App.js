@@ -13,7 +13,7 @@ import QRCode from './components/qr-code-generator/QRCodeGenerator';
 import Sidebar from './components/sidebar/Sidebar';
 import URLEncodeDecode from './components/url-encode-decode/URLEncodeDecode';
 import {MENU_MAP} from './utils/constants';
-
+import URLParser from './components/url-parser/URLParser';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -33,6 +33,7 @@ const App = () => {
           <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
           <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
           <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} />
+          <Route path={MENU_MAP.urlParser.path} element={<URLParser themeMode={themeMode} />} />
         </Routes>
       </Container>
       <Notification />
