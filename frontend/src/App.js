@@ -14,6 +14,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import URLEncodeDecode from './components/url-encode-decode/URLEncodeDecode';
 import {MENU_MAP} from './utils/constants';
 import URLParser from './components/url-parser/URLParser';
+import Whiteboard from './components/whiteboard/Whiteboard';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -34,6 +35,7 @@ const App = () => {
           <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
           <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} />
           <Route path={MENU_MAP.urlParser.path} element={<URLParser themeMode={themeMode} />} />
+          <Route path={MENU_MAP.whiteboard.path} element={<Whiteboard themeMode={themeMode} />} />
         </Routes>
       </Container>
       <Notification />

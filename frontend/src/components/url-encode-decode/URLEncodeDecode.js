@@ -59,7 +59,7 @@ const URLEncodeDecode = ({themeMode}) => {
                 <Label>String to Encode:</Label>
                 <Input
                   type='textarea'
-                  rows={3}
+                  rows={5}
                   value={encoder}
                   onChange={handleEncoding} />
               </FormGroup>
@@ -67,7 +67,7 @@ const URLEncodeDecode = ({themeMode}) => {
                 <Label>Encoded string:</Label>
                 <Input
                   type='textarea'
-                  rows={3}
+                  rows={5}
                   value={encoded} />
               </FormGroup>
               <div className='text-center'>
@@ -86,7 +86,7 @@ const URLEncodeDecode = ({themeMode}) => {
                 <Label>String to Decode:</Label>
                 <Input
                   type='textarea'
-                  rows={3}
+                  rows={5}
                   value={decoder}
                   onChange={handleDecoding} />
               </FormGroup>
@@ -94,7 +94,7 @@ const URLEncodeDecode = ({themeMode}) => {
                 <Label>Decoded string:</Label>
                 <Input
                   type='textarea'
-                  rows={3}
+                  rows={5}
                   value={decoded}
                   onChange={handleEncoding} />
               </FormGroup>
