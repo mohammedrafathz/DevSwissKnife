@@ -1,7 +1,6 @@
 {
   "name": "devswissknife-frontend",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.18.2",
@@ -12,8 +11,7 @@
     "bootstrap": "^5.1.3",
     "canvg": "^4.0.0",
     "eslint": "^8.17.0",
-    "lint": "^0.7.0",
-    "react": "^18.2.0",
+    "react": "^18.1.0",
     "react-bootstrap-icons": "^1.8.2",
     "react-dom": "^18.1.0",
     "react-dropzone": "^14.2.1",
@@ -25,7 +23,8 @@
     "reactstrap": "^9.0.3",
     "socket.io-client": "^4.5.1",
     "socketio-file-upload": "^0.7.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-internet-meter": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

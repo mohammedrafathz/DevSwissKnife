@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {Button, Card, CardBody, Col, Input, Nav, Row} from 'reactstrap';
 
 import styles from './Sidebar.module.css';
-import SideItem from '../side-item/SideItem';
-import {MENU_MAP} from '../../utils/constants';
+import SideItem from '../side-item/SideItem.js';
+import {MENU_MAP} from '../../utils/constants.js';
 
 const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
   const renderUrls = () => {

@@ -8,9 +8,9 @@ import {useDropzone} from 'react-dropzone';
 import io from 'socket.io-client';
 
 import styles from './FileSharing.module.css';
-import {generateUniqueId} from '../../utils/commonFunction';
+import {generateUniqueId} from '../../utils/commonFunction.js';
 import {CheckAll} from 'react-bootstrap-icons';
-import {basePath, birdNames} from '../../utils/constants';
+import {basePath, birdNames} from '../../utils/constants.js';
 // import serverApi from '../../api/serverApi';
 
 
