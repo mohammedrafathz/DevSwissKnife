@@ -13,15 +13,8 @@ export const MENU_MAP = {
   textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},
   qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'}
 };
-let basePath;
-// TODO change base url
-if (process.env.NODE_ENV === 'production') {
-  basePath = 'https://swiss-knife.azurewebsites.net/';
-} else {
-  basePath = 'http://localhost:3000';
-}
 
-export basePath;
+export let basePath = process.env.NODE_ENV === 'production' ? 'https://swiss-knife.azurewebsites.net/' : 'http://localhost:3000';
 
 export const birdNames = [
   'abbotts-babbler',
