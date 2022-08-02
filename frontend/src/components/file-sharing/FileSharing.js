@@ -14,7 +14,6 @@ import {basePath, birdNames} from '../../utils/constants';
 // import serverApi from '../../api/serverApi';
 
 
-
 const FileSharing = () => {
   // const [multipleUploadProgress, setMultipleUploadProgress] = useState(0);
   // const [tooltip, setTooltip] = useState(false);
