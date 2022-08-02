@@ -1,65 +1,68 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { Button, Container } from 'reactstrap';
-import {
-  Label,
-} from 'reactstrap';
+import React, {useCallback, useState} from 'react';
+import {Button, Container, Label} from 'reactstrap';
 
+
+import classes from './InternetSpeedTest.module.css';
+
+const imageAddr = 'https://res.cloudinary.com/dhznnpvlm/image/upload/v1597167466/123_lhrqhr.jpg';
+const downloadSize = 4995374; //bytes
 
 const InternetSpeedTest = () => {
-  const [imgLink, setImgLink] = useState('https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200714180638/CIP_Launch-banner.png');
-  const [downloadSize, setDownloadSize] = useState(5616998);
   const [speedInMbps, setSpeedInMbps] = useState(0);
-  const [speedInKbps, setSpeedInKbps] = useState(0);
-  const [i, setI] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  var downloadImgSrc = new Image();
-  var endTime;
+  const measureConnectionSpeed = useCallback(() => {
+    // console.log("detecting");
+    let startTime, endTime;
+    const download = new Image();
 
-  downloadImgSrc.onload = function () {
-    endTime = new Date().getTime();
-    displaySpeed();
-  };
+    download.onload = () => {
+      endTime = (new Date()).getTime();
+      showResults();
+      setLoading(false);
+    };
 
+    download.onerror = (err, msg) => {
+      setLoading(false);
+      // setError('Connection Error.');
+    };
 
-  var startTime = new Date().getTime();
+    startTime = (new Date()).getTime();
+    const cacheBuster = '?nnn=' + startTime;
+    download.src = imageAddr + cacheBuster;
 
-  downloadImgSrc.src = imgLink;
+    const showResults = () => {
+      const duration = (endTime - startTime) / 1000;
+      const bitsLoaded = downloadSize * 8;
+      const speedBps = (bitsLoaded / duration).toFixed(2);
+      const speedKbps = (speedBps / 1024).toFixed(2);
+      const speedMbps = (speedKbps / 1024).toFixed(2);
 
-  // if (i === 0) {
-  var displaySpeed = function () {
-    let timeDuration = (endTime - startTime) / 1000;
-    let loadedBits = downloadSize * 8;
-    console.log('interenet sopepd', timeDuration, loadedBits, endTime, startTime, i);
+      setSpeedInMbps(speedMbps);
+    };
+  }, []);
 
-    let bps = (loadedBits / timeDuration).toFixed(2);
-    console.log('bps', bps);
+  const initSpeedDetection = useCallback(() => {
+    setLoading(true);
+    // window.setTimeout(measureConnectionSpeed, 1);
+    measureConnectionSpeed();
+  }, [measureConnectionSpeed]);
 
-    setSpeedInKbps((bps / 1024).toFixed(2));
-    setSpeedInMbps((speedInKbps / 1024).toFixed(2));
-    // setI(i => i + 1);
-    if (timeDuration > 0) {
-      alert('Your internet connection speed is: \n'
-        + bps + ' bps\n' + speedInKbps
-        + ' kbps\n' + speedInMbps + ' Mbps\n');
-    }
-
-  };
-  // }
-
-
-  //TODO auto detect json from clipboard and show as placeholder
   return (
     <>
       <Container>
         <h1 className='text-center'>INTERNET SPEED TEST</h1>
         <br />
         <br />
-        <br />
         <div className='text-center'>
-          <Label>Download in Mbps : {speedInMbps}</Label><br />
-          <Label>Download in Kbps: {speedInKbps}</Label><br />
-          <Button >
+          {loading && <div className={classes.load2}>
+            <div className={classes.line}></div>
+            <div className={classes.line}></div>
+            <div className={classes.line}></div>
+          </div>}
+          <Label>Your Internet Speed is : {speedInMbps} MB/s</Label><br />
+          <Button onClick={initSpeedDetection}>
             START
           </Button>
         </div>
