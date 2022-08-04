@@ -61,8 +61,9 @@ const InternetSpeedTest = () => {
             <div className={classes.line}></div>
             <div className={classes.line}></div>
           </div>}
-          <Label>Your Internet Speed is : {speedInMbps} MB/s</Label><br />
-          <Button onClick={initSpeedDetection}>
+          <Label style={{fontWeight:'bold', fontSize:22}}>Your Internet Speed is :</Label><br />
+          <Label style={{fontWeight:'bold', fontSize:52}}>{speedInMbps} MB/s</Label><br /><br/>
+          <Button onClick={initSpeedDetection} style={{backgroundColor:'green'}}>
             START
           </Button>
         </div>

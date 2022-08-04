@@ -11,7 +11,8 @@ export const MENU_MAP = {
   fileSharing: {label: 'Quick File Sharing', path: '/quick-file-share'},
   temporaryEmail: {label: 'Temporary Email', path: '/temp-emails'},
   textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},
-  qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'}
+  qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'},
+  tokenGenerator:{label:'Token Generator', path: '/token-generator'}
 };
 
 // TODO change base url

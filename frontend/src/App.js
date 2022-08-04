@@ -17,6 +17,7 @@ import Sidebar from './components/sidebar/Sidebar.js';
 import {MENU_MAP} from './utils/constants.js';
 import URLParser from './components/url-parser/URLParser.js';
 // import Whiteboard from './components/whiteboard/Whiteboard.js';
+import TokenGenerator from './components/token-generator/TokenGenerator.js';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -37,6 +38,7 @@ const App = () => {
           {/* <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} /> */}
           {/* <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} /> */}
           <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
+          <Route path={MENU_MAP.tokenGenerator.path} element={<TokenGenerator />} />
           {/* <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} /> */}
           <Route path={MENU_MAP.urlParser.path} element={<URLParser themeMode={themeMode} />} />
           {/* <Route path={MENU_MAP.whiteboard.path} element={<Whiteboard themeMode={themeMode} />} /> */}
