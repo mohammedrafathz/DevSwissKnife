@@ -12,7 +12,8 @@ export const MENU_MAP = {
   temporaryEmail: {label: 'Temporary Email', path: '/temp-emails'},
   textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},
   qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'},
-  tokenGenerator:{label:'Token Generator', path: '/token-generator'}
+  tokenGenerator:{label:'Token Generator', path: '/token-generator'},
+  randomPort:{label:'Random Port', path:'/random-port'}
 };
 
 // TODO change base url
