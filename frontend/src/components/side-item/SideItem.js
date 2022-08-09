@@ -5,8 +5,8 @@ import {NavItem} from 'reactstrap';
 
 import styles from './SideItem.module.css';
 
-const SideItem = ({label, path,themeMode}) => (
-  <NavItem className={`list-group-item ${themeMode? 'list-group-item-dark': ''}`}>
+const SideItem = ({label, path}) => (
+  <NavItem className={styles.menuItem}>
     <NavLink className={styles.link} to={path}>
       {label}
     </NavLink>

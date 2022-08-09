@@ -7,7 +7,7 @@ export const MENU_MAP = {
   urlParser: {label: 'URL Parser', path: '/url-parser'},
   formatters: {label: 'Formatters', path: '/formatters'},
   whiteboard: {label: 'Quick Whiteboard', path: '/whiteboard'},
-  umlTools: {label: 'UML Tools', path: '/uml-tools'},
+  // umlTools: {label: 'UML Tools', path: '/uml-tools'},
   fileSharing: {label: 'Quick File Sharing', path: '/quick-file-share'},
   temporaryEmail: {label: 'Temporary Email', path: '/temp-emails'},
   textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},

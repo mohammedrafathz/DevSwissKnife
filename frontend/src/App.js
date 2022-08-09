@@ -15,30 +15,36 @@ import URLEncodeDecode from './components/url-encode-decode/URLEncodeDecode';
 import {MENU_MAP} from './utils/constants';
 import URLParser from './components/url-parser/URLParser';
 import Whiteboard from './components/whiteboard/Whiteboard';
+import Footer from './components/footer/Footer';
+import NotFound from './components/not-found/NotFound';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
   const [themeMode, setThemeMode] = useState(false);
 
   return (
-    <div className={`home ${themeMode ? 'bg-dark dark' : 'bg-light'}`}>
-      <Navigation
-        changeMode={setThemeMode}
-        toggleSidebar={() => setSidebar(s => !s)} />
+    <div className='wrapper d-flex align-items-stretch'>
       <Sidebar themeMode={themeMode} isOpen={sidebar} toggleSidebar={setSidebar} />
-      <Container>
-        <Routes>
-          <Route path={MENU_MAP.home.path} element={<Home />} />
-          <Route path={MENU_MAP.jsonKeySorter.path} element={<JsonKeySorter />} />
-          <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} />
-          <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
-          <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
-          <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} />
-          <Route path={MENU_MAP.urlParser.path} element={<URLParser themeMode={themeMode} />} />
-          <Route path={MENU_MAP.whiteboard.path} element={<Whiteboard themeMode={themeMode} />} />
-        </Routes>
-      </Container>
-      <Notification />
+      <div className='content'>
+        <Navigation
+          changeMode={setThemeMode}
+          toggleSidebar={() => setSidebar(s => !s)} />
+        <Container>
+          <Routes>
+            <Route path={MENU_MAP.home.path} element={<Home />} />
+            <Route path={MENU_MAP.jsonKeySorter.path} element={<JsonKeySorter />} />
+            <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} />
+            <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
+            <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
+            <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} />
+            <Route path={MENU_MAP.urlParser.path} element={<URLParser themeMode={themeMode} />} />
+            <Route path={MENU_MAP.whiteboard.path} element={<Whiteboard themeMode={themeMode} />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </Container>
+        <Notification />
+        <Footer />
+      </div>
     </div>
   );
 };
