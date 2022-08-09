@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
   position: fixed !important;
   left: 0px;
   width: 320px;
@@ -26,4 +26,42 @@
 
 .hide {
   left: -400px;
+} */
+
+#sidebar {
+  min-width: 270px;
+  max-width: 270px;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  position: relative;
+  border-right: 1px solid #ced4da;
+}
+
+.customMenu {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  margin-right: -20px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.menuList {
+  padding: 0;
+  list-style: none;
+}
+
+.button {
+  width: 50px;
+  height: 40px;
+  border-radius: 50% ;
+  position: relative;
+  color: #fff !important;
+}
+
+.active{
+  margin-left: -270px;
 }

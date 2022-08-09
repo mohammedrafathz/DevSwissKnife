@@ -58,7 +58,7 @@ const URLParser = ({themeMode}) => {
       </div>
       <br />
       <Row className='justify-content-center'>
-        <Col sm='8'>
+        <Col sm='12' md='12' lg="8">
           <Card className='shadow' color={`${themeMode ? ' dark-card' : 'white'}`}>
             <CardBody>
               <FormGroup row>
