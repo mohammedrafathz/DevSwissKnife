@@ -5,12 +5,12 @@ export const MENU_MAP = {
   compareJSON: {label: 'Compare JSON', path: 'compare-json'},
   urlEncoder: {label: 'URL Encode/Decode', path: '/url-en-decoder'},
   urlParser: {label: 'URL Parser', path: '/url-parser'},
-  formatters: {label: 'Formatters', path: '/formatters'},
+  // formatters: {label: 'Formatters', path: '/formatters'},
   whiteboard: {label: 'Quick Whiteboard', path: '/whiteboard'},
-  // umlTools: {label: 'UML Tools', path: '/uml-tools'},
+  hashGenerator: {label: 'Hash Generator', path: '/hash-generator'},
   fileSharing: {label: 'Quick File Sharing', path: '/quick-file-share'},
   temporaryEmail: {label: 'Temporary Email', path: '/temp-emails'},
-  textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},
+  textStatistics: {label: 'Text Statistics', path: '/text-statistics'},
   qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'}
 };
 

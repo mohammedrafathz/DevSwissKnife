@@ -17,6 +17,8 @@ import URLParser from './components/url-parser/URLParser';
 import Whiteboard from './components/whiteboard/Whiteboard';
 import Footer from './components/footer/Footer';
 import NotFound from './components/not-found/NotFound';
+import HashGenerator from './components/hash-generator/HashGenerator';
+import TextStatistics from './components/text-statistics/TextStatistics';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -36,13 +38,18 @@ const App = () => {
             <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} />
             <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
             <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
+            <Route path={MENU_MAP.hashGenerator.path} element={<HashGenerator />} />
             <Route path={MENU_MAP.urlEncoder.path} element={<URLEncodeDecode themeMode={themeMode} />} />
             <Route path={MENU_MAP.urlParser.path} element={<URLParser themeMode={themeMode} />} />
             <Route path={MENU_MAP.whiteboard.path} element={<Whiteboard themeMode={themeMode} />} />
+            <Route path={MENU_MAP.textStatistics.path} element={<TextStatistics />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </Container>
         <Notification />
+        <br />
+        <br />
+        <br />
         <Footer />
       </div>
     </div>

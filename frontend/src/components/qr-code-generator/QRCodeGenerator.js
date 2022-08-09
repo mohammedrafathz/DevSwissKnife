@@ -89,7 +89,7 @@ const QRCodeGenerator = () => {
       <canvas id='cvs' height='300' width='300' style={{display: 'none'}}></canvas>
       <br />
       <Row >
-        <Col sm={6} className='m-0-auto'>
+        <Col sm={8} className='m-0-auto'>
           <Card>
             <CardBody>
               <InputGroup className='mb-3'>

@@ -29,4 +29,5 @@ body {
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+  overflow-x: scroll;
 }
