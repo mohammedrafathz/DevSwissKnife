@@ -1,0 +1,11 @@
+.blink {
+    animation: blinker 1s linear infinite;
+    margin-left: 18%;
+    margin-top: 30%;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0.2;
+    }
+  }
