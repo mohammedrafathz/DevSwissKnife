@@ -1,0 +1,17 @@
+.modalImage{
+    max-height: 400px !important;
+}
+.div{
+    display: flex;
+    justify-content: space-between;
+    max-width: 70%;
+    margin-left: 20%;
+}
+.image{
+    margin-left: 30%;
+}
+.header{
+    font-weight: bold;
+    font-size: xx-large;
+    margin-left: 40%;
+}

@@ -19,6 +19,7 @@ import URLParser from './components/url-parser/URLParser.js';
 // import Whiteboard from './components/whiteboard/Whiteboard.js';
 import TokenGenerator from './components/token-generator/TokenGenerator.js';
 import RandomPort from './components/random-port/RandomPort.js';
+import CheatSheets from './components/cheat-sheets/CheatSheets.js';
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -35,6 +36,7 @@ const App = () => {
           <Route path={MENU_MAP.home.path} element={<Home />} />
           <Route path={MENU_MAP.internetSpeedTest.path} element={<InternetSpeedTest />} />
           <Route path={MENU_MAP.temporaryEmail.path} element={<TemporaryEmail />} />
+          <Route path={MENU_MAP.cheatSheets.path} element={<CheatSheets />} />
           {/* <Route path={MENU_MAP.jsonKeySorter.path} element={<JsonKeySorter />} /> */}
           {/* <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} /> */}
           {/* <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} /> */}

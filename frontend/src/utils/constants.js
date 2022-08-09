@@ -13,7 +13,8 @@ export const MENU_MAP = {
   textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},
   qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'},
   tokenGenerator:{label:'Token Generator', path: '/token-generator'},
-  randomPort:{label:'Random Port', path:'/random-port'}
+  randomPort:{label:'Random Port', path:'/random-port'},
+  cheatSheets:{label:'Cheat Sheets', path:'/cheat-sheets'}
 };
 
 export let basePath = process.env.NODE_ENV === 'production' ? 'https://swiss-knife.azurewebsites.net/' : 'http://localhost:3000';
