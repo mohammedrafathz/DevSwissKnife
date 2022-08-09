@@ -5,16 +5,16 @@ export const MENU_MAP = {
   compareJSON: {label: 'Compare JSON', path: 'compare-json'},
   urlEncoder: {label: 'URL Encode/Decode', path: '/url-en-decoder'},
   urlParser: {label: 'URL Parser', path: '/url-parser'},
-  formatters: {label: 'Formatters', path: '/formatters'},
+  // formatters: {label: 'Formatters', path: '/formatters'},
   whiteboard: {label: 'Quick Whiteboard', path: '/whiteboard'},
-  umlTools: {label: 'UML Tools', path: '/uml-tools'},
+  hashGenerator: {label: 'Hash Generator', path: '/hash-generator'},
   fileSharing: {label: 'Quick File Sharing', path: '/quick-file-share'},
   temporaryEmail: {label: 'Temporary Email', path: '/temp-emails'},
-  textManipulation: {label: 'Text Manipulation', path: '/text-manipulation'},
   qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'},
   tokenGenerator:{label:'Token Generator', path: '/token-generator'},
   randomPort:{label:'Random Port', path:'/random-port'},
-  cheatSheets:{label:'Cheat Sheets', path:'/cheat-sheets'}
+  cheatSheets:{label:'Cheat Sheets', path:'/cheat-sheets'},
+  textStatistics: {label: 'Text Statistics', path: '/text-statistics'}
 };
 
 export let basePath = process.env.NODE_ENV === 'production' ? 'https://swiss-knife.azurewebsites.net/' : 'http://localhost:3000';

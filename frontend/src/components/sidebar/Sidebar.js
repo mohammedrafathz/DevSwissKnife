@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card, CardBody, Col, Input, Nav, Row} from 'reactstrap';
+// import {Button, Card, CardBody, Col, Input, Nav, Row} from 'reactstrap';
 
 import styles from './Sidebar.module.css';
-import SideItem from '../side-item/SideItem.js';
-import {MENU_MAP} from '../../utils/constants.js';
+import {Button} from 'reactstrap';
+import {List} from 'react-bootstrap-icons';
+import SideItem from '../side-item/SideItem';
+import {MENU_MAP} from '../../utils/constants';
 
 const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
+
   const renderUrls = () => {
     let menuList = [];
     for (const k in MENU_MAP) {
@@ -17,14 +20,27 @@ const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
     }
     return menuList;
   };
-
   return (
     <>
-      <Card color={`${themeMode ? ' dark-card' : 'white'}`} className={`${styles.sidebar} ` + (isOpen ? '' : `${styles.hide}`)}>
+      <nav id={styles.sidebar} className={isOpen ? styles.active : ''}>
+        <div className={styles.customMenu}>
+          <Button className={styles.button} onClick={() => toggleSidebar(e => !e)}>
+            <List size={24} />
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
+        </div>
+        <div className="p-4">
+          <img className='img-fluid mt-2' src='/images/logo.png' alt='Developer Swiss Knife Logo ' />
+          <ul className={styles.menuList}>
+            {renderUrls()}
+          </ul>
+        </div>
+      </nav>
+      {/* <Card color={`${themeMode ? ' dark-card' : 'white'}`} className={`${styles.sidebar} ` + (isOpen ? '' : `${styles.hide}`)}>
         <CardBody>
           <Row>
             <Col sm={9}>
-              <img className='img-fluid' src='/images/logo.png' alt='Developer Swiss Knife Logo ' />
+              
             </Col>
             <Col>
               <Button close className='float-end' color='light' onClick={() => toggleSidebar(e => !e)} />
@@ -41,7 +57,7 @@ const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
             {renderUrls()}
           </Nav>
         </CardBody>
-      </Card>
+      </Card> */}
     </>
   );
 };

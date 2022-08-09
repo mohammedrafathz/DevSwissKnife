@@ -1,11 +1,9 @@
 import React from 'react';
-import {Navbar, NavbarToggler} from 'reactstrap';
+import {Navbar} from 'reactstrap';
 import PropTypes from 'prop-types';
 
-const Navigation = ({toggleSidebar}) => (
-  <Navbar color="faded" light >
-    <NavbarToggler className="me-2" onClick={toggleSidebar} />
-    {/* <Button onClick={() => changeMode(m => !m)}>dark/Light</Button> */}
+const Navigation = () => (
+  <Navbar color="faded" light style={{marginTop:'20px'}} >
   </Navbar>
 );
 
