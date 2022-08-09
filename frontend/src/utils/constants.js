@@ -10,8 +10,11 @@ export const MENU_MAP = {
   hashGenerator: {label: 'Hash Generator', path: '/hash-generator'},
   fileSharing: {label: 'Quick File Sharing', path: '/quick-file-share'},
   temporaryEmail: {label: 'Temporary Email', path: '/temp-emails'},
-  textStatistics: {label: 'Text Statistics', path: '/text-statistics'},
-  qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'}
+  qrCodeGenerator: {label: 'QR Code Generator', path: '/qr-code'},
+  tokenGenerator:{label:'Token Generator', path: '/token-generator'},
+  randomPort:{label:'Random Port', path:'/random-port'},
+  cheatSheets:{label:'Cheat Sheets', path:'/cheat-sheets'},
+  textStatistics: {label: 'Text Statistics', path: '/text-statistics'}
 };
 
 export let basePath = process.env.NODE_ENV === 'production' ? 'https://swiss-knife.azurewebsites.net/' : 'http://localhost:3000';

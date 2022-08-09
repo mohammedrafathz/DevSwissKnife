@@ -1,0 +1,34 @@
+.box{
+    background-color:black;
+    height:200px;
+}
+.button{
+    background-color: green;
+    color: white;
+    margin-left: 35%;
+    border-radius: 5%;
+}
+.copy{
+    background-color: blue;
+    color: white;
+    margin-left: 5%;
+    border-radius: 10%;
+}
+.text{
+    color: white;
+    margin-left: 45%;
+    font-weight: bold;
+    font-size:xx-large;
+    margin-top: 3%;
+}
+.blink {
+    animation: blinker 1s linear infinite;
+    margin-left: 18%;
+    margin-top: 30%;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0.2;
+    }
+  }

@@ -74,10 +74,10 @@ module.exports = {
     }],
     'arrow-parens': ['warn', 'as-needed'],
     'arrow-body-style': ['error', 'as-needed'],
-    'linebreak-style': [
-      'error',
-      'unix',
-    ],
+    // 'linebreak-style': [
+    //   'error',
+    //   'unix',
+    // ],
     'quotes': [
       'error',
       'single',
