@@ -11,7 +11,6 @@ const cors = require('cors');
 const fs = require('fs');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 const app = express();
 const httpServer = createServer(app);
@@ -46,10 +45,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/', indexRouter);
+// app.use('/users', usersRouter);
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -101,8 +104,8 @@ io.on("connection", (socket) => {
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
 
-      fs.mkdirSync(`./uploads/${file.folder}`, {recursive: true})
-      fs.writeFileSync(`./uploads/${file.folder}/${file.filename}`, file.file, 'binary');
+      fs.mkdirSync(`${__dirname}/uploads/${file.folder}`, {recursive: true})
+      fs.writeFileSync(`${__dirname}/uploads/${file.folder}/${file.filename}`, file.file, 'binary');
 
       fileNames.push(file.filename)
     }
@@ -115,8 +118,8 @@ io.on("connection", (socket) => {
   });
 })
 
-httpServer.listen(3000, () => {
-  console.log('server listening on port 3000');
+httpServer.listen(80, () => {
+  console.log('server listening on port 80');
 })
 
 module.exports = app;

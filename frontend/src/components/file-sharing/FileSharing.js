@@ -14,7 +14,6 @@ import {basePath, birdNames} from '../../utils/constants.js';
 // import serverApi from '../../api/serverApi';
 
 
-
 const FileSharing = () => {
   // const [multipleUploadProgress, setMultipleUploadProgress] = useState(0);
   // const [tooltip, setTooltip] = useState(false);
@@ -26,14 +25,9 @@ const FileSharing = () => {
     maxFiles: 5,
     maxSize: 5242880
   });
-  // multi file dropzone
-  // 5 files allowed at a time
-  // console.log(multipleUploadProgress);
+
   const uploadFiles = useCallback(uploadFiles => {
-    // for (let i = 0; i < acceptedFiles.length; i++) {
-    //   const file = acceptedFiles[i];
     socket.emit('fileUpload', uploadFiles);
-    // }
   }, [socket]);
 
   useEffect(() => {
@@ -65,7 +59,6 @@ const FileSharing = () => {
           uploaded: false
         };
 
-        console.log(file.name);
         filesArr.push(newFile);
 
       }
@@ -79,7 +72,6 @@ const FileSharing = () => {
   useEffect(() => {
     if (socket) {
       socket.on('success', data => {
-        console.log(files);
         if (files.length > 0) {
           const uploadedFiles = files.map(f => data.includes(f.filename) ? {...f, uploaded: true} : f);
 
@@ -88,7 +80,6 @@ const FileSharing = () => {
       });
 
       socket.on('savedFiles', data => {
-        console.log(data);
         setFiles(data);
       });
     }
@@ -143,7 +134,7 @@ const FileSharing = () => {
               <ListGroupItem key={i} className='d-flex justify-content-between align-items-start'>
                 <div className="ms-2 me-auto">
                   <div className="fw-bold">
-                    <a href={`${basePath}/filesharing?sessionId=${sessionId}&filename=${a.file.name}`}> {a.file.name}
+                    <a href={`${basePath}/api/filesharing?sessionId=${sessionId}&filename=${a.file.name}`}> {a.file.name}
                     </a>
                   </div>
                   {a.file.size / 1024} Kb | {a.file.type}

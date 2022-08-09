@@ -16,8 +16,7 @@ export const MENU_MAP = {
   randomPort:{label:'Random Port', path:'/random-port'}
 };
 
-// TODO change base url
-export let basePath = 'http://localhost:3000';
+export let basePath = process.env.NODE_ENV === 'production' ? 'https://swiss-knife.azurewebsites.net/' : 'http://localhost:3000';
 
 export const birdNames = [
   'abbotts-babbler',
