@@ -33,8 +33,8 @@ const RandomPort = () => {
             <CardBody className='text-center'>
               <h1>{rPort}</h1>
               <br />
-              <Button onClick={generatePortNumber} class={style.button}>Generate</Button>
-              <Button onClick={() => copyToClipboard(rPort)} className={style.copy + ' ml-2'}>Copy</Button>
+              <Button onClick={generatePortNumber} class={style.button} style={{backgroundColor: 'green'}}>Generate</Button>
+              <Button onClick={() => copyToClipboard(rPort)} className={style.copy + ' ml-2'} style={{backgroundColor:'blue'}}>Copy</Button>
               <p className="ml-2 text-base-secondary text-sm light">
                 {copySuccess ? <span className={style.blink}>Copied to Clipboard!</span> : ''}
               </p>
