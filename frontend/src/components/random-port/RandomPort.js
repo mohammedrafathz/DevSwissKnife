@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, {useCallback, useEffect, useState} from 'react';
-import {Button, Card, CardBody, Col, Container, Label, Row} from 'reactstrap';
+import React, {useEffect, useState} from 'react';
+import {Button, Card, CardBody, Col, Row} from 'reactstrap';
 import {copyToClipboard} from '../../utils/commonFunction';
 import style from './RandomPort.module.css';
 
