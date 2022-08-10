@@ -1,27 +1,11 @@
 
 import React, {useState} from 'react';
-import {Button, Card, CardBody, Col, Input, Row} from 'reactstrap';
+import {
+  Button, Card, CardBody,
+  Col, Input, Row
+} from 'reactstrap';
 
 const TextStatistics = () => {
-
-  const handleupClick = () => {
-    let newText = text.toUpperCase();
-    setText(newText);
-  };
-
-  const handelLoClick = () => {
-    let newtext = text.toLowerCase();
-
-    setText(newtext);
-
-  };
-
-  const handleOnchange = event => {
-    setText(event.target.value);
-
-  };
-
-
   const [text, setText] = useState('');
 
   return (
@@ -41,11 +25,13 @@ const TextStatistics = () => {
                 bsSize='lg'
                 placeholder='Enter your text here...'
                 value={text}
-                onChange={handleOnchange}
+                onChange={({target}) => setText(target.value)}
               />
               <br />
-              <Button className='mr-2' onClick={handelLoClick}>Convert To Uppercase</Button>
-              <Button onClick={handleupClick}>Convert To Lowercase</Button>
+              <div className='text-center'>
+                <Button outline className='mr-2' onClick={() => setText(t => t.toLowerCase())}>Convert To Uppercase</Button>
+                <Button outline onClick={() => setText(t => t.toUpperCase())}>Convert To Lowercase</Button>
+              </div>
               <br />
               <br />
               <h4>Text Summary details</h4>

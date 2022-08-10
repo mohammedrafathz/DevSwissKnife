@@ -9,7 +9,7 @@ const Footer = () => (
       <section className="p-4 py-2 border-bottom">
         <a
           href='https://github.com/mohammedrafathz/DevSwissKnife/'
-          className='btn btn-secondary pl-2'
+          className='btn  btn-outline-secondary pl-2'
           target='_blank'
           rel="noreferrer">
           <Github size={20} /> Contribute
