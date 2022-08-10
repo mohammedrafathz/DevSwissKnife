@@ -1,20 +1,17 @@
-/* eslint-disable no-unused-vars */
-import React, {useCallback, useState} from 'react';
-import {Button, Container, Label} from 'reactstrap';
+import React from 'react';
+import {Container, Label} from 'reactstrap';
 
-const TemporaryEmail = () => {
-  const [email, setemail] = useState('');
-
-  return (
-    <>
-      <Container>
-        <h1 className='text-center'>TEMPORARY EMAIL {email}</h1>
-        <Label style={{marginLeft:'15%', marginTop:'5%'}}>This feature is still under development. </Label>
-        <Label> Please visit this site for the same <a href="https://tempmail.email/"> TemporaryEmail</a>.</Label>
-      </Container>
-    </>
-  );
-}
-  ;
+const TemporaryEmail = () => (
+  <>
+    <Container className='text-center'>
+      <h1>Temporary Email </h1>
+      <br />
+      <br />
+      <Label>This feature is still under development.
+        <br />
+        Click on this URL <a href="https://tempmail.email/"> Temporary Email</a> to use temporary email generator. </Label>
+    </Container >
+  </>
+);
 
 export default TemporaryEmail;

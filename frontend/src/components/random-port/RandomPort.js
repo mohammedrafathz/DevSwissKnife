@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
+import {Clipboard, Gear} from 'react-bootstrap-icons';
 import {Button, Card, CardBody, Col, Row} from 'reactstrap';
 import {copyToClipboard} from '../../utils/commonFunction';
 import style from './RandomPort.module.css';
-
 
 const RandomPort = () => {
   const [rPort, setRPort] = useState(false);
@@ -33,8 +33,14 @@ const RandomPort = () => {
             <CardBody className='text-center'>
               <h1>{rPort}</h1>
               <br />
-              <Button onClick={generatePortNumber} class={style.button}>Generate</Button>
-              <Button onClick={() => copyToClipboard(rPort)} className={style.copy + ' ml-2'}>Copy</Button>
+              <Button outline onClick={generatePortNumber} class={style.button}>
+                <Gear size={24} />
+                {' '} Generate
+              </Button>
+              <Button color='primary' outline onClick={() => copyToClipboard(rPort)} className={style.copy + ' ml-2'}>
+                <Clipboard size={24} />
+                {' '} Copy to Clipboard
+              </Button>
               <p className="ml-2 text-base-secondary text-sm light">
                 {copySuccess ? <span className={style.blink}>Copied to Clipboard!</span> : ''}
               </p>

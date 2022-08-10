@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
-import { Container, Label, Button } from 'reactstrap';
-import classes from './TokenGenerator.module.css';
+import React, {useEffect, useState} from 'react';
+import {Clipboard, Gear} from 'react-bootstrap-icons';
+import {Button, Row, Col, Card, CardBody, Input} from 'reactstrap';
+import {copyToClipboard} from '../../utils/commonFunction';
 
 const TokenGenerator = () => {
+  const [token, setToken] = useState('');
 
-  const [token, setToken] = useState('Your Token Goes Here');
-  const [copySuccess, setCopySuccess] = useState(false);
-  const initTokenGeneration = (() => {
-
+  const generateToken = () => {
     const rand = () => Math.random().toString(36).substring(2);
-    setCopySuccess(false);
     setToken(rand() + rand() + rand() + rand());
-    console.log('token', token);
+  };
 
-  });
-
-  const copyToClipboard = (() => {
-    const tempInput = document.createElement('input');
-    tempInput.value = token;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
-    setCopySuccess(true);
-  });
+  useEffect(() => {
+    generateToken();
+  }, []);
 
   return (
     <>
-      <Container style={{ width: '100%', marginLeft: '20%' }}>
-        <Label style={{ marginLeft: '20%', fontWeight: 'bold' }}>TOKEN GENERATOR</Label><br /><br />
-        <input value={token} onChange={token} style={{
-          width: '50%', height: 100, borderColor: '#8497b8', borderRadius: 5
-          , borderWidth: 1
-        }}></input><br />
-        <br />
-        <Button onClick={initTokenGeneration} style={{ backgroundColor: 'green', marginLeft: '15%' }}>Generate</Button>
-        <Button onClick={copyToClipboard} style={{ marginLeft: '5%', backgroundColor: 'blue' }}>Copy</Button>
-        <p className="ml-2 text-base-secondary text-sm light">
-          {copySuccess ? <span className={classes.blink}>Copied to Clipboard!</span> : ''}
-        </p>
-      </Container>
+      <div className='text-center'>
+        <h1>Token Generator</h1>
+        <small>Generates random token strings</small>
+      </div>
+      <br />
+      <Row >
+        <Col sm={8} className='m-0-auto'>
+          <Card>
+            <CardBody className='text-center'>
+              <Input
+                bsSize='lg'
+                placeholder='Enter text you want to hash...'
+                value={token}
+              />
+              <br />
+              <Button onClick={generateToken} className='me-2' outline>
+                <Gear size={24} />
+                {' '} Generate
+              </Button>
+              <Button color='primary' outline onClick={() => copyToClipboard(token)}>
+                <Clipboard size={24} />
+                {' '} Copy to Clipboard
+              </Button>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 };
