@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Clipboard} from 'react-bootstrap-icons';
 import {Button, Col, FormGroup, Input, Label, Row, UncontrolledAlert} from 'reactstrap';
 import {copyToClipboard} from '../../utils/commonFunction';
 
@@ -85,8 +86,9 @@ const JsonKeySorter = () => {
         </Col>
       </Row>
       <div className='text-center'>
-        <Button onClick={() => copyToClipboard(sortedData)}>
-          Copy to Clipboard
+        <Button outline onClick={() => copyToClipboard(sortedData)}>
+          <Clipboard size={24} />
+          {' '}  Copy to Clipboard
         </Button>
         <Button className='ms-2' color='danger' outline onClick={() => setInputData('')}>
           Clear
