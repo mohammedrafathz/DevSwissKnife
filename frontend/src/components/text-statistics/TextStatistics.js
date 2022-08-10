@@ -44,8 +44,8 @@ const TextStatistics = () => {
                 onChange={handleOnchange}
               />
               <br />
-              <Button className='mr-2' onClick={handleupClick}>Convert To Uppercase</Button>
-              <Button onClick={handelLoClick}>Convert To Lowercase</Button>
+              <Button className='mr-2' onClick={handelLoClick}>Convert To Uppercase</Button>
+              <Button onClick={handleupClick}>Convert To Lowercase</Button>
               <br />
               <br />
               <h4>Text Summary details</h4>
