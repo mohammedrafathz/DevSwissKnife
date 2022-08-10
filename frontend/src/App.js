@@ -4,7 +4,7 @@ import { Container } from 'reactstrap';
 import Notification from 'react-notify-bootstrap';
 
 import './App.css';
-import CompareJson from './components/compare-json/CompareJson.js';
+// import CompareJson from './components/compare-json/CompareJson.js';
 import InternetSpeedTest from './components/internet-speed-test/InternetSpeedTest.js';
 import TemporaryEmail from './components/temporary-email/TemporaryEmail.js';
 import TokenGenerator from './components/token-generator/TokenGenerator.js';
@@ -45,7 +45,7 @@ const App = () => {
             <Route path={MENU_MAP.jsonKeySorter.path} element={<JsonKeySorter />} />
             <Route path={MENU_MAP.qrCodeGenerator.path} element={<QRCode />} />
             <Route path={MENU_MAP.fileSharing.path} element={<FileSharing />} />
-            <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} />
+            {/* <Route path={MENU_MAP.compareJSON.path} element={<CompareJson />} /> */}
             <Route path={MENU_MAP.hashGenerator.path} element={<HashGenerator />} />
             <Route path={MENU_MAP.tokenGenerator.path} element={<TokenGenerator />} />
             <Route path={MENU_MAP.randomPort.path} element={<RandomPort />} />
