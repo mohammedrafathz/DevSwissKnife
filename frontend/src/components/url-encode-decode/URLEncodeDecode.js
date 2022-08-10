@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {notify} from 'react-notify-bootstrap';
 import {
   Button, Card, CardBody,
-  Col, FormGroup, Input, Label, Row
+  Col, FormGroup, Input,
+  Label, Row
 } from 'reactstrap';
+
+import {copyToClipboard} from '../../utils/commonFunction';
+import {Clipboard} from 'react-bootstrap-icons';
 
 const URLEncodeDecode = ({themeMode}) => {
   const [encoder, setEncoder] = useState('');
@@ -23,22 +26,6 @@ const URLEncodeDecode = ({themeMode}) => {
     setDecoder(target.value);
     const decoded = decodeURIComponent(target.value);
     setDecoded(decoded);
-  };
-
-  const copyEncoded = () => {
-    if (encoded) {
-      navigator.clipboard.writeText(encoded).then(() => {
-        notify({text: 'Copied!', variant: 'dark'});
-      });
-    }
-  };
-
-  const copyDecoded = () => {
-    if (decoded) {
-      navigator.clipboard.writeText(decoded).then(() => {
-        notify({text: 'Copied!', variant: 'dark'});
-      });
-    }
   };
 
   return (
@@ -71,8 +58,9 @@ const URLEncodeDecode = ({themeMode}) => {
                   value={encoded} />
               </FormGroup>
               <div className='text-center'>
-                <Button onClick={copyEncoded}>
-                  Copy to Clipboard
+                <Button outline onClick={() => copyToClipboard(encoded)}>
+                  <Clipboard size={24} />
+                  {' '}  Copy to Clipboard
                 </Button>
               </div>
             </CardBody>
@@ -99,8 +87,9 @@ const URLEncodeDecode = ({themeMode}) => {
                   onChange={handleEncoding} />
               </FormGroup>
               <div className='text-center'>
-                <Button onClick={copyDecoded}>
-                  Copy to Clipboard
+                <Button outline onClick={() => copyToClipboard(decoded)}>
+                  <Clipboard size={24} />
+                  {' '} Copy to Clipboard
                 </Button>
               </div>
             </CardBody>

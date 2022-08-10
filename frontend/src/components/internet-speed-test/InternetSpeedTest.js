@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useCallback, useState} from 'react';
-import {Button, Container, Label} from 'reactstrap';
+import {Button, Card, CardBody, Col, Container, Label, Row} from 'reactstrap';
 
 
 import classes from './InternetSpeedTest.module.css';
@@ -51,23 +51,29 @@ const InternetSpeedTest = () => {
 
   return (
     <>
-      <Container>
-        <h1 className='text-center'>INTERNET SPEED TEST</h1>
-        <br />
-        <br />
-        <div className='text-center'>
-          {loading && <div className={classes.load2}>
-            <div className={classes.line}></div>
-            <div className={classes.line}></div>
-            <div className={classes.line}></div>
-          </div>}
-          <Label style={{fontWeight:'bold', fontSize:22}}>Your Internet Speed is :</Label><br />
-          <Label style={{fontWeight:'bold', fontSize:52}}>{speedInMbps} MB/s</Label><br /><br/>
-          <Button onClick={initSpeedDetection} style={{backgroundColor:'green'}}>
-            START
-          </Button>
-        </div>
-      </Container>
+      <div className='text-center'>
+        <h1>Internet Speed Test</h1>
+        <small>Check your internet speed</small>
+      </div>
+      <br />
+      <Row >
+        <Col sm={8} className='m-0-auto'>
+          <Card>
+            <CardBody className='text-center'>
+              {loading && <div className={classes.load2}>
+                <div className={classes.line}></div>
+                <div className={classes.line}></div>
+                <div className={classes.line}></div>
+              </div>}
+              <Label style={{fontWeight: 'bold', fontSize: 22}}>Your Internet Speed is :</Label><br />
+              <Label style={{fontWeight: 'bold', fontSize: 52}}>{speedInMbps} MB/s</Label><br /><br />
+              <Button outline onClick={initSpeedDetection} color='success'>
+                START
+              </Button>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 }
