@@ -32,7 +32,7 @@ const TokenGenerator = () => {
                 value={token}
               />
               <br />
-              <Button onClick={generateToken} className='me-2' outline>
+              <Button color='success' onClick={generateToken} className='me-2' outline>
                 <Gear size={24} />
                 {' '} Generate
               </Button>

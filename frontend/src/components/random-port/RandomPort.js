@@ -33,7 +33,7 @@ const RandomPort = () => {
             <CardBody className='text-center'>
               <h1>{rPort}</h1>
               <br />
-              <Button outline onClick={generatePortNumber} class={style.button}>
+              <Button color='success' outline onClick={generatePortNumber} class={style.button}>
                 <Gear size={24} />
                 {' '} Generate
               </Button>
