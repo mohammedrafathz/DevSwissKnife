@@ -7,19 +7,22 @@ import {Button} from 'reactstrap';
 import {List} from 'react-bootstrap-icons';
 import SideItem from '../side-item/SideItem';
 import {MENU_MAP} from '../../utils/constants';
+import {Link} from 'react-router-dom';
 
 const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
-
   const renderUrls = () => {
     let menuList = [];
     for (const k in MENU_MAP) {
       if (Object.hasOwnProperty.call(MENU_MAP, k)) {
         const element = MENU_MAP[k];
-        menuList.push(<SideItem themeMode={themeMode} key={k} label={element.label} path={element.path} />);
+        if (element.label !== 'Home') {
+          menuList.push(<SideItem themeMode={themeMode} key={k} label={element.label} path={element.path} />);
+        }
       }
     }
     return menuList;
   };
+
   return (
     <>
       <nav id={styles.sidebar} className={isOpen ? styles.active : ''}>
@@ -30,7 +33,9 @@ const Sidebar = ({isOpen, toggleSidebar, themeMode}) => {
           </Button>
         </div>
         <div className="p-4">
-          <img className='img-fluid mt-2' src='/images/logo.png' alt='Developer Swiss Knife Logo ' />
+          <Link to={MENU_MAP.home}>
+            <img className='img-fluid mt-2' src='/images/logo.png' alt='Developer Swiss Knife Logo ' />
+          </Link>
           <ul className={styles.menuList}>
             {renderUrls()}
           </ul>
