@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/devswissknife/static/css/main.9bd92af6.css",
+    "main.js": "/devswissknife/static/js/main.2e6891d1.js",
+    "static/js/787.11e33fa5.chunk.js": "/devswissknife/static/js/787.11e33fa5.chunk.js",
+    "index.html": "/devswissknife/index.html",
+    "main.9bd92af6.css.map": "/devswissknife/static/css/main.9bd92af6.css.map",
+    "main.2e6891d1.js.map": "/devswissknife/static/js/main.2e6891d1.js.map",
+    "787.11e33fa5.chunk.js.map": "/devswissknife/static/js/787.11e33fa5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9bd92af6.css",
+    "static/js/main.2e6891d1.js"
+  ]
+}
